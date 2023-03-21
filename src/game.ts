@@ -112,41 +112,87 @@ import { movePlayerTo } from "@decentraland/RestrictedActions";
 import * as utils from "@dcl/ecs-scene-utils";
 import { addElevator } from "./modules/elevator";
 
-const base = new Entity();
-base.addComponent(new GLTFShape("models/baseDarkWithCollider.glb"));
-base.addComponent(new Transform({ scale: new Vector3(1, 1, 2) }));
-engine.addEntity(base);
+const edificio = new Entity();
+edificio.addComponent(new GLTFShape("models/Edificio2.glb"));
+edificio.addComponent(
+  new Transform({
+    position: new Vector3(6.8, 0, 18.7),
+    rotation: new Quaternion(0, -3.2, 0, 3.2),
+    scale: new Vector3(0.9, 0.8, 0.94),
+  })
+),
+  engine.addEntity(edificio);
 
-// const edificio = new Entity();
-// edificio.addComponent(new GLTFShape("models/EdificioV2.glb"));
-// edificio.addComponent(
+const box = new Entity();
+box.addComponent(new BoxShape());
+box.getComponent(BoxShape).withCollisions = false;
+box.addComponent(new Transform({ position: new Vector3(9.3, 1, 28.9) }));
+let triggerBox = new utils.TriggerBoxShape();
+box.addComponent(
+  new utils.TriggerComponent(
+    triggerBox, //shape
+    {
+      onCameraEnter: () => {
+        log("triggered!");
+        movePlayerTo({ x: 7.5, y: 12, z: 4 }, { x: 8, y: 10, z: 29 });
+      },
+      // enableDebug: true,
+    }
+  )
+);
+engine.addEntity(box);
+
+//Teleport del primer piso al segundo
+// const tpPiso1a2 = new Entity();
+// tpPiso1a2.addComponent(new BoxShape());
+// tpPiso1a2.addComponent(
 //   new Transform({
-//     position: new Vector3(1, 1, 1),
+//     position: new Vector3(9.3, 0, 28.9),
 //   })
 // );
-// edificio.addComponent(new Transform({ scale: new Vector3(1, 1, 2) }));
-// engine.addEntity(edificio);
-
-// const edificio = new Entity();
-// edificio.addComponent(new GLTFShape("models/EdificioV2.glb"));
-// edificio.addComponent(
-//   new Transform({
-//     position: new Vector3(6.8, 0.3, 18.7),
-//     rotation: new Quaternion(0, -3.2, 0, 3.2),
-//     scale: new Vector3(0.9, 0.8, 0.94),
+// let triggerBox = new utils.TriggerBoxShape();
+// tpPiso1a2.addComponent(
+//   new utils.TriggerComponent(triggerBox, {
+//     onCameraEnter: () => {
+//       movePlayerTo({ x: 7.5, y: 12, z: 4 }, { x: 8, y: 10, z: 29 });
+//     },
 //   })
-// ),
-//   engine.addEntity(edificio);
+// );
+// engine.addEntity(tpPiso1a2);
 
-const teleport = new Entity();
-teleport.addComponent(new BoxShape());
-teleport.addComponent(new Transform({ position: new Vector3(1, 0, 8) }));
-teleport.addComponent(
-  new OnPointerHoverEnter((e) => {
-    movePlayerTo({ x: 5, y: 25, z: 24 }, { x: 10, y: 10, z: 29 });
+//Teleport del segundo piso al tercero
+const tpPiso2a3 = new Entity();
+tpPiso2a3.addComponent(new BoxShape());
+tpPiso2a3.addComponent(
+  new Transform({
+    position: new Vector3(11, 7.5, 4),
   })
 );
-engine.addEntity(teleport);
+tpPiso2a3.addComponent(
+  new OnPointerHoverEnter((e) => {
+    movePlayerTo({ x: 5, y: 24, z: 11 }, { x: 10, y: 10, z: 31 });
+  })
+);
+engine.addEntity(tpPiso2a3);
+
+//Teleport del segundo piso al primero
+const tpPiso2a1 = new Entity();
+tpPiso2a1.addComponent(new GLTFShape("models/teleport.glb"));
+tpPiso2a1.addComponent(
+  new Transform({
+    position: new Vector3(4, 7.5, 4),
+  })
+);
+tpPiso2a1.addComponent(
+  new OnPointerDown(
+    (e) => {
+      movePlayerTo({ x: 9, y: 4, z: 21 }, { x: 10, y: 10, z: 32 });
+    },
+
+    { hoverText: "Moverte" }
+  )
+);
+engine.addEntity(tpPiso2a1);
 
 //Puerta principal
 
