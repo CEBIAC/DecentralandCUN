@@ -1,65 +1,133 @@
 import { NPC } from "@dcl/npc-scene-utils";
 import { Dialog } from "@dcl/npc-scene-utils";
+import { movePlayerTo } from "@decentraland/RestrictedActions";
+import * as utils from "@dcl/ecs-scene-utils";
 
-// export let Eva = new NPC(
-//   {
-//     position: new Vector3(9, 0.001, 24),
-//     rotation: new Quaternion(0, -10, 0, 3),
-//     scale: new Vector3(0.7, 0.7, 0.7),
-//   },
-//   "models/EVA.glb",
-//   () => {
-//     Eva.talk(EvaDialogo, 0);
-//   },
+export let Eva = new NPC(
+  {
+    position: new Vector3(9, 0.001, 24),
+    rotation: new Quaternion(0, -10, 0, 3),
+    scale: new Vector3(0.7, 0.7, 0.7),
+  },
+  "models/EVA.glb",
+  () => {
+    Eva.talk(EvaDialogo, 0);
+  },
 
-//   {
-//     idleAnim: `Weight_Shift`,
-//     faceUser: true,
-//     portrait: { path: "models/foto.png", height: 128, width: 128 },
-//     darkUI: true,
-//     coolDownDuration: 3,
-//     hoverText: "CHAT",
-//     onlyClickTrigger: true,
-//     onlyExternalTrigger: false,
-//     reactDistance: 4,
-//     continueOnWalkAway: true,
-//     onWalkAway: () => {
-//       log("walked away");
-//     },
-//   }
-// );
+  {
+    idleAnim: `Weight_Shift`,
+    faceUser: true,
+    portrait: { path: "models/foto.png", height: 128, width: 128 },
+    darkUI: true,
+    coolDownDuration: 3,
+    hoverText: "CHAT",
+    onlyClickTrigger: true,
+    onlyExternalTrigger: false,
+    reactDistance: 4,
+    continueOnWalkAway: true,
+    onWalkAway: () => {
+      log("walked away");
+    },
+  }
+);
 
-// export let EvaDialogo: Dialog[] = [
-//   {
-//     text: `¡Proximamente podrás explorar un <color="green><b>mundo virtual</b></color>  sin límites en un nuevo espacio que tenemos para ti en el <color="green"><b>Metaverso</b></color=>!`,
-//   },
-//   {
-//     text: "¡Sumérgete en un lugar innovador y único que hemos creado para ti!",
-//   },
-//   {
-//     text: "En el primer piso, encontrarás un espectacular centro de eventos, el lugar perfecto para reunirse con amigos y disfrutar de una amplia variedad de actividades interactivas.",
-//     isEndOfDialog: true,
-//   },
-// ];
+export let EvaDialogo: Dialog[] = [
+  {
+    text: `¡Proximamente podrás explorar un <color="green><b>mundo virtual</b></color>  sin límites en un nuevo espacio que tenemos para ti en el <color="green"><b>Metaverso</b></color=>!`,
+  },
+  {
+    text: "¡Sumérgete en un lugar innovador y único que hemos creado para ti!",
+  },
+  {
+    text: "En el primer piso, encontrarás un espectacular centro de eventos, el lugar perfecto para reunirse con amigos y disfrutar de una amplia variedad de actividades interactivas.",
+    isEndOfDialog: true,
+  },
+];
 
-// export function createCube(pos: Vector3, label: string, sphere?: boolean) {
-//   const cube = new Entity();
-//   cube.addComponent(
-//     new Transform({
-//       position: pos,
-//     })
-//   );
-//   if (sphere === true) {
-//     cube.addComponent(new SphereShape());
-//     cube.getComponent(Transform).scale.setAll(0.5);
-//   } else {
-//     cube.addComponent(new BoxShape());
-//   }
+export function createCube(pos: Vector3, label: string, sphere?: boolean) {
+  const cube = new Entity();
+  cube.addComponent(
+    new Transform({
+      position: pos,
+    })
+  );
+  if (sphere === true) {
+    cube.addComponent(new SphereShape());
+    cube.getComponent(Transform).scale.setAll(0.5);
+  } else {
+    cube.addComponent(new BoxShape());
+  }
 
-//   engine.addEntity(cube);
+  engine.addEntity(cube);
 
-//   return cube;
-// }
+  return cube;
+}
+
+//POSTERS
+
+//POSTER PRINCIPAL
+const posterPrincipal = new Entity();
+const texturaPoster = new Texture("posters/posterPrincipal.jpg");
+const myPoster = new BasicMaterial();
+myPoster.texture = texturaPoster;
+posterPrincipal.addComponent(new PlaneShape());
+posterPrincipal.addComponent(
+  new Transform({
+    position: new Vector3(0.7, 9.1, 9.7),
+    rotation: new Quaternion(1, 0, 1, 0),
+    scale: new Vector3(5, 10, 1),
+  })
+),
+  posterPrincipal.addComponent(myPoster);
+engine.addEntity(posterPrincipal);
+
+//POSTER CINNCREA
+const posterCinncrea = new Entity();
+const texturaPoster2 = new Texture("posters/posterCinncrea.jpg");
+const myPoster2 = new BasicMaterial();
+myPoster2.texture = texturaPoster2;
+posterCinncrea.addComponent(new PlaneShape());
+posterCinncrea.addComponent(
+  new Transform({
+    position: new Vector3(13, 1.8, 29),
+    rotation: new Quaternion(1, 0, 1, 0),
+    scale: new Vector3(1.3, 2.6, 1),
+  })
+),
+  posterCinncrea.addComponent(myPoster2);
+engine.addEntity(posterCinncrea);
+
+//POSTER BANG
+const posterBang = new Entity();
+const texturaPoster3 = new Texture("posters/PosterBang.jpg");
+const myPoster3 = new BasicMaterial();
+myPoster3.texture = texturaPoster3;
+posterBang.addComponent(new PlaneShape());
+posterBang.addComponent(
+  new Transform({
+    position: new Vector3(4, 10.4, 6.3),
+    rotation: new Quaternion(0, 0, 1, 0),
+    scale: new Vector3(2, 2.2, 1.8),
+  })
+),
+  posterBang.addComponent(myPoster3);
+engine.addEntity(posterBang);
+
+//POSTER BANG
+const posterSapiolab = new Entity();
+const texturaPoster4 = new Texture("posters/PosterSapiolab.jpg");
+const myPoster4 = new BasicMaterial();
+myPoster4.texture = texturaPoster4;
+posterSapiolab.addComponent(new PlaneShape());
+posterSapiolab.addComponent(
+  new Transform({
+    position: new Vector3(11.1, 10.4, 6.3),
+    rotation: new Quaternion(0, 0, 1, 0),
+    scale: new Vector3(2, 2.2, 1.8),
+  })
+),
+  posterSapiolab.addComponent(myPoster4);
+engine.addEntity(posterSapiolab);
 
 //NFT
 const entity = new Entity();
@@ -70,107 +138,66 @@ const shapeComponent = new NFTShape(
 entity.addComponent(shapeComponent);
 entity.addComponent(
   new Transform({
-    position: new Vector3(9.21, 3.6, 18.9),
+    position: new Vector3(9.21, 3.7, 18.9),
     rotation: new Quaternion(0, 1, 0),
     scale: new Vector3(4, 4, 1),
   })
 );
 engine.addEntity(entity);
 
-//Prueba transparencia
-const transparencia = new Material();
-transparencia.albedoColor = new Color4(0, 0.5, 0, 0.5);
-const box = new BoxShape();
-//Pared1
-let myEntity = new Entity();
-myEntity.addComponent(box);
-myEntity.addComponent(
-  new Transform({
-    position: new Vector3(7.6, 3.8, 2.8),
-    scale: new Vector3(9.9, 6, 0.1),
-  })
-);
-myEntity.addComponent(transparencia);
-engine.addEntity(myEntity);
-//Pared2
-let myEntity2 = new Entity();
-myEntity2.addComponent(box);
-myEntity2.addComponent(
-  new Transform({
-    position: new Vector3(7.6, 11, 30.3),
-    scale: new Vector3(9.9, 6, 0.1),
-  })
-);
-myEntity2.addComponent(transparencia);
-engine.addEntity(myEntity2);
-//Pared3
-let myEntity3 = new Entity();
-myEntity3.addComponent(box);
-myEntity3.addComponent(
-  new Transform({
-    position: new Vector3(13, 11, 18),
-    scale: new Vector3(0.1, 7, 24),
-  })
-);
-myEntity3.addComponent(transparencia);
-engine.addEntity(myEntity3);
-//Pared4
-let myEntity4 = new Entity();
-myEntity4.addComponent(box);
-myEntity4.addComponent(
-  new Transform({
-    position: new Vector3(2.5, 11, 18),
-    scale: new Vector3(0.1, 7, 24),
-  })
-);
-myEntity4.addComponent(transparencia);
-engine.addEntity(myEntity4);
-
-//Televisor
-// // #1
-// const myVideoClip = new VideoClip(
-//   "https://bafybeihdrrymugozltrblebs6jqxx2yayyxirpxxrkwg4vinixtej5sspq.ipfs.w3s.link/y2mate.com%20-%20Estudia%20una%20carrera%20universitaria%20en%20la%20CUN_480p.mp4"
-// );
-
-// // // #2
-// const myVideoTexture = new VideoTexture(myVideoClip);
-
-// // // #3
-// const myMaterial = new Material();
-// myMaterial.albedoTexture = myVideoTexture;
-// myMaterial.roughness = 1;
-// myMaterial.specularIntensity = 0;
-// myMaterial.metallic = 0;
-
-// // // #4
-// const screen = new Entity();
-// screen.addComponent(new PlaneShape());
-// screen.addComponent(
+// // Prueba transparencia
+// const transparencia = new Material();
+// transparencia.albedoColor = new Color4(0, 0.5, 0, 0.5);
+// const box = new BoxShape();
+// //Pared1
+// let myEntity = new Entity();
+// myEntity.addComponent(box);
+// myEntity.addComponent(
 //   new Transform({
-//     position: new Vector3(7.8, 10.3, 29.5),
-//     rotation: new Quaternion(0, 8, 0, 0),
-//     scale: new Vector3(9, 4.5, 10),
+//     position: new Vector3(7.6, 3.8, 2.8),
+//     scale: new Vector3(9.9, 6, 0.1),
 //   })
 // );
-// screen.addComponent(myMaterial);
-// screen.addComponent(
-//   new OnPointerDown(() => {
-//     myVideoTexture.playing = !myVideoTexture.playing;
-//   })
-// );
-// engine.addEntity(screen);
+
+//TELEVISOR SEGUNDO PISO
+const myVideoClip = new VideoClip(
+  "https://bafybeihdrrymugozltrblebs6jqxx2yayyxirpxxrkwg4vinixtej5sspq.ipfs.w3s.link/y2mate.com%20-%20Estudia%20una%20carrera%20universitaria%20en%20la%20CUN_480p.mp4"
+);
+
+// // #2
+const myVideoTexture = new VideoTexture(myVideoClip);
+
+// // #3
+const myMaterial = new Material();
+myMaterial.albedoTexture = myVideoTexture;
+myMaterial.roughness = 1;
+myMaterial.specularIntensity = 0;
+myMaterial.metallic = 0;
+
+// // #4
+const screen = new Entity();
+screen.addComponent(new PlaneShape());
+screen.addComponent(
+  new Transform({
+    position: new Vector3(7.8, 10.3, 29.5),
+    rotation: new Quaternion(0, 8, 0, 0),
+    scale: new Vector3(9, 4.5, 10),
+  })
+);
+screen.addComponent(myMaterial);
+screen.addComponent(
+  new OnPointerDown(() => {
+    myVideoTexture.playing = !myVideoTexture.playing;
+  })
+);
+engine.addEntity(screen);
 
 // myVideoTexture.play();
-// myVideoTexture.loop = true;
-
-import { movePlayerTo } from "@decentraland/RestrictedActions";
-import * as utils from "@dcl/ecs-scene-utils";
-import { addElevator } from "./modules/elevator";
-import { PictureFrameStyle } from "node_modules/decentraland-ecs/dist/index";
+myVideoTexture.loop = true;
 
 //Ediificio CUN
 const edificio = new Entity();
-edificio.addComponent(new GLTFShape("models/prueba18.glb"));
+edificio.addComponent(new GLTFShape("models/EdificioFinal.glb"));
 edificio.addComponent(
   new Transform({
     position: new Vector3(6.8, 0, 18.7),
@@ -179,6 +206,54 @@ edificio.addComponent(
   })
 ),
   engine.addEntity(edificio);
+
+//TUBO SAPIOLAB
+const sapiolab = new Entity();
+sapiolab.addComponent(new GLTFShape("models/props/sapiolab.glb"));
+sapiolab.addComponent(
+  new Transform({
+    position: new Vector3(11, 9.4, 14.6),
+    rotation: new Quaternion(0, -3.2, 0, 3.2),
+    scale: new Vector3(0.5, 0.5, 0.5),
+  })
+),
+  engine.addEntity(sapiolab);
+
+//TUBO CAJABANG
+const cajabang = new Entity();
+cajabang.addComponent(new GLTFShape("models/props/cajabang.glb"));
+cajabang.addComponent(
+  new Transform({
+    position: new Vector3(11, 9.5, 10.4),
+    rotation: new Quaternion(0, -3.2, 0, 3.2),
+    scale: new Vector3(0.3, 0.3, 0.3),
+  })
+),
+  engine.addEntity(cajabang);
+
+//TUBO INNOVAFEST
+const innovafest = new Entity();
+innovafest.addComponent(new GLTFShape("models/props/innovaEmision.glb"));
+innovafest.addComponent(
+  new Transform({
+    position: new Vector3(4.5, 9.5, 10.4),
+    rotation: new Quaternion(0, 3.2, 0, 3.2),
+    scale: new Vector3(0.3, 0.3, 0.3),
+  })
+),
+  engine.addEntity(innovafest);
+
+//TUBO SINCERO
+const csincero = new Entity();
+csincero.addComponent(new GLTFShape("models/props/csincero.glb"));
+csincero.addComponent(
+  new Transform({
+    position: new Vector3(5.2, 9.5, 14.6),
+    rotation: new Quaternion(0, 3.2, 0, 3.2),
+    scale: new Vector3(0.3, 0.3, 0.3),
+  })
+),
+  engine.addEntity(csincero);
 
 //Teleport del Primer a Segundo piso
 const tp = new Entity();
@@ -264,7 +339,7 @@ tp2a3.addComponent(
         );
       },
 
-      enableDebug: true,
+      // enableDebug: true,
     }
   )
 );
