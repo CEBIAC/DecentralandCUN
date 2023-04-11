@@ -62,6 +62,17 @@ export function createCube(pos: Vector3, label: string, sphere?: boolean) {
 
   return cube;
 }
+//TARIMA
+const tarima = new Entity();
+tarima.addComponent(new CylinderShape());
+tarima.addComponent(
+  new Transform({
+    position: new Vector3(7.6, 8, 25.4),
+    rotation: new Quaternion(1, 0, 1, 0),
+    scale: new Vector3(1.4, 0.1, 1.4),
+  })
+);
+engine.addEntity(tarima);
 
 //POSTERS
 
@@ -129,22 +140,125 @@ posterSapiolab.addComponent(
   posterSapiolab.addComponent(myPoster4);
 engine.addEntity(posterSapiolab);
 
-//NFT
-const entity = new Entity();
-const shapeComponent = new NFTShape(
-  "ethereum://0xd774557b647330c91bf44cfeab205095f7e6c367/17076",
+//NFT Nicolle
+const NicolleNFT = new Entity();
+const NFT1 = new NFTShape(
+  "ethereum://0x495f947276749ce646f68ac8c248420045cb7b5e/42185734286181403191372707636980316969771009591214703246197094191112931770369",
   { color: Color3.Blue() }
 );
-entity.addComponent(shapeComponent);
-entity.addComponent(
+NicolleNFT.addComponent(NFT1);
+NicolleNFT.addComponent(
   new Transform({
-    position: new Vector3(9.21, 3.7, 18.9),
+    position: new Vector3(9.15, 3.65, 18.9),
     rotation: new Quaternion(0, 1, 0),
     scale: new Vector3(4, 4, 1),
   })
 );
-engine.addEntity(entity);
+NicolleNFT.addComponent(
+  new OnPointerDown((e) => {
+    openNFTDialog(
+      "ethereum://0x495f947276749ce646f68ac8c248420045cb7b5e/42185734286181403191372707636980316969771009591214703246197094191112931770369",
+      "Pieza artística creada desde C-inncrea."
+    );
+  })
+);
+engine.addEntity(NicolleNFT);
 
+//NFT Maria
+const MariaNFT = new Entity();
+const NFT2 = new NFTShape(
+  "ethereum://0x495f947276749ce646f68ac8c248420045cb7b5e/42185734286181403191372707636980316969771009591214703246197094186714885259274",
+  { color: Color3.Blue() }
+);
+MariaNFT.addComponent(NFT2);
+MariaNFT.addComponent(
+  new Transform({
+    position: new Vector3(7, 3.65, 17.3),
+    rotation: new Quaternion(0, 360, 0),
+    scale: new Vector3(4, 4, 1),
+  })
+);
+MariaNFT.addComponent(
+  new OnPointerDown((e) => {
+    openNFTDialog(
+      "ethereum://0x495f947276749ce646f68ac8c248420045cb7b5e/42185734286181403191372707636980316969771009591214703246197094186714885259274",
+      "Pieza artística creada desde C-inncrea."
+    );
+  })
+);
+engine.addEntity(MariaNFT);
+
+//NFT Laura
+const LauraNFT = new Entity();
+const NFT3 = new NFTShape(
+  "ethereum://0x495f947276749ce646f68ac8c248420045cb7b5e/42185734286181403191372707636980316969771009591214703246197094190013420142593",
+  { color: Color3.Blue() }
+);
+LauraNFT.addComponent(NFT3);
+LauraNFT.addComponent(
+  new Transform({
+    position: new Vector3(7, 3.65, 16.8),
+    rotation: new Quaternion(0, 0, 0),
+    scale: new Vector3(4, 4, 1),
+  })
+);
+LauraNFT.addComponent(
+  new OnPointerDown((e) => {
+    openNFTDialog(
+      "ethereum://0x495f947276749ce646f68ac8c248420045cb7b5e/42185734286181403191372707636980316969771009591214703246197094190013420142593",
+      "Pieza artística creada desde C-inncrea."
+    );
+  })
+);
+engine.addEntity(LauraNFT);
+
+//NFT Laura
+const JavierNFT = new Entity();
+const NFT4 = new NFTShape(
+  "ethereum://0x495f947276749ce646f68ac8c248420045cb7b5e/42185734286181403191372707636980316969771009591214703246197094188913908514817",
+  { color: Color3.Blue() }
+);
+JavierNFT.addComponent(NFT4);
+JavierNFT.addComponent(
+  new Transform({
+    position: new Vector3(9.15, 3.65, 13.5),
+    rotation: new Quaternion(0, 1, 0),
+    scale: new Vector3(4, 4, 1),
+  })
+);
+JavierNFT.addComponent(
+  new OnPointerDown((e) => {
+    openNFTDialog(
+      "ethereum://0x495f947276749ce646f68ac8c248420045cb7b5e/42185734286181403191372707636980316969771009591214703246197094188913908514817",
+      "Pieza artística creada desde C-inncrea."
+    );
+  })
+);
+engine.addEntity(JavierNFT);
+
+//NFT Javier
+const SantiagoNFT = new Entity();
+const NFT5 = new NFTShape(
+  "ethereum://0x495f947276749ce646f68ac8c248420045cb7b5e/42185734286181403191372707636980316969771009591214703246197094187814396887050",
+  { color: Color3.Blue() }
+);
+SantiagoNFT.addComponent(NFT5);
+SantiagoNFT.addComponent(
+  new Transform({
+    position: new Vector3(7, 3.65, 9.8),
+    rotation: new Quaternion(0, 360, 0),
+    scale: new Vector3(4, 4, 1),
+  })
+);
+SantiagoNFT.addComponent(
+  new OnPointerDown((e) => {
+    openNFTDialog(
+      "ethereum://0x495f947276749ce646f68ac8c248420045cb7b5e/42185734286181403191372707636980316969771009591214703246197094187814396887050",
+      "Pieza artística creada desde C-inncrea."
+    );
+  })
+);
+engine.addEntity(SantiagoNFT);
 // // Prueba transparencia
 // const transparencia = new Material();
 // transparencia.albedoColor = new Color4(0, 0.5, 0, 0.5);
@@ -217,7 +331,8 @@ sapiolab.addComponent(
     scale: new Vector3(0.5, 0.5, 0.5),
   })
 ),
-  engine.addEntity(sapiolab);
+  sapiolab.addComponent(new Billboard());
+engine.addEntity(sapiolab);
 
 //TUBO CAJABANG
 const cajabang = new Entity();
@@ -229,7 +344,8 @@ cajabang.addComponent(
     scale: new Vector3(0.3, 0.3, 0.3),
   })
 ),
-  engine.addEntity(cajabang);
+  cajabang.addComponent(new Billboard());
+engine.addEntity(cajabang);
 
 //TUBO INNOVAFEST
 const innovafest = new Entity();
@@ -241,19 +357,21 @@ innovafest.addComponent(
     scale: new Vector3(0.3, 0.3, 0.3),
   })
 ),
-  engine.addEntity(innovafest);
+  innovafest.addComponent(new Billboard());
+engine.addEntity(innovafest);
 
 //TUBO SINCERO
 const csincero = new Entity();
 csincero.addComponent(new GLTFShape("models/props/csincero.glb"));
 csincero.addComponent(
   new Transform({
-    position: new Vector3(5.2, 9.5, 14.6),
+    position: new Vector3(4.6, 9.5, 14.6),
     rotation: new Quaternion(0, 3.2, 0, 3.2),
     scale: new Vector3(0.3, 0.3, 0.3),
   })
 ),
-  engine.addEntity(csincero);
+  csincero.addComponent(new Billboard());
+engine.addEntity(csincero);
 
 //Teleport del Primer a Segundo piso
 const tp = new Entity();
@@ -285,6 +403,60 @@ tp.addComponent(
 );
 engine.addEntity(tp);
 
+//Flecha subir
+const flechaSubir = new Entity();
+flechaSubir.addComponent(new GLTFShape("models/props/Arrow.glb"));
+flechaSubir.addComponent(
+  new Transform({
+    position: new Vector3(9.3, 2, 28.9),
+    rotation: new Quaternion(
+      -0.70710688829422,
+      -1.1063546168088578e-7,
+      -0.7071067094802856,
+      2.6341773207150254e-8
+    ),
+    scale: new Vector3(1.5, 1.5, 0),
+  })
+),
+  engine.addEntity(flechaSubir);
+
+const flechaSubir2 = new Entity();
+flechaSubir2.addComponent(new GLTFShape("models/props/Arrow.glb"));
+flechaSubir2.addComponent(
+  new Transform({
+    position: new Vector3(11.1, 9, 4.1),
+    rotation: new Quaternion(
+      -0.70710688829422,
+      -1.1063546168088578e-7,
+      -0.7071067094802856,
+      2.6341773207150254e-8
+    ),
+    scale: new Vector3(1.5, 1.5, 0),
+  })
+),
+  engine.addEntity(flechaSubir2);
+
+const flechaBajar = new Entity();
+flechaBajar.addComponent(new GLTFShape("models/props/Arrowred.glb"));
+flechaBajar.addComponent(
+  new Transform({
+    position: new Vector3(4, 8, 4.1),
+    rotation: new Quaternion(0, 1, 0),
+    scale: new Vector3(1.5, 1.5, 0),
+  })
+),
+  engine.addEntity(flechaBajar);
+
+const flechaBajar2 = new Entity();
+flechaBajar2.addComponent(new GLTFShape("models/props/Arrowred.glb"));
+flechaBajar2.addComponent(
+  new Transform({
+    position: new Vector3(7.9, 15, 29),
+    rotation: new Quaternion(0, 0, 0),
+    scale: new Vector3(1.5, 1.5, 0),
+  })
+),
+  engine.addEntity(flechaBajar2);
 //Teleport del segundo piso al primero
 const tp1a2 = new Entity();
 tp1a2.addComponent(new BoxShape());
@@ -315,7 +487,7 @@ tp1a2.addComponent(
 );
 engine.addEntity(tp1a2);
 
-//Teleport del segundo piso al primero
+//Teleport del segundo piso al tercero
 const tp2a3 = new Entity();
 tp2a3.addComponent(new BoxShape());
 
@@ -334,7 +506,7 @@ tp2a3.addComponent(
         log("triggered!");
         tp2a3.addComponent(
           new utils.Delay(500, () => {
-            movePlayerTo({ x: 6, y: 2, z: 21 }, { x: 19, y: 2, z: 8 });
+            movePlayerTo({ x: 8, y: 18, z: 8 }, { x: 8, y: 18, z: 8 });
           })
         );
       },
@@ -344,6 +516,36 @@ tp2a3.addComponent(
   )
 );
 engine.addEntity(tp2a3);
+
+//Teleport del tercero al segundo
+const tp3a2 = new Entity();
+tp3a2.addComponent(new BoxShape());
+
+tp3a2.addComponent(
+  new Transform({
+    position: new Vector3(7.8, 16, 29),
+    scale: new Vector3(0, 0, 0),
+  })
+);
+let triggerBox4 = new utils.TriggerBoxShape();
+tp3a2.addComponent(
+  new utils.TriggerComponent(
+    triggerBox4, //shape
+    {
+      onCameraEnter: () => {
+        log("triggered!");
+        tp3a2.addComponent(
+          new utils.Delay(500, () => {
+            movePlayerTo({ x: 7.5, y: 12, z: 4 }, { x: 8, y: 15, z: 13 });
+          })
+        );
+      },
+
+      // enableDebug: true,
+    }
+  )
+);
+engine.addEntity(tp3a2);
 
 //Puerta principal
 // const wall1 = new Entity();

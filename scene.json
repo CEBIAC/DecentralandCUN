@@ -1,13 +1,15 @@
 {
   "display": {
-    "title": "interactive-text",
-    "favicon": "favicon_asset"
+    "title": "CUNIVERSO",
+    "description": "Un lugar disruptivo",
+    "favicon": "favicon_asset",
+    "navmapThumbnail": "posters/preview.png"
   },
   "contact": {
-    "name": "author-name",
-    "email": ""
+    "name": "Corporación Unificada Nacional de Educación Superior",
+    "email": "innovacion@cun.edu.co"
   },
-  "owner": "",
+  "owner": "CUN",
   "scene": {
     "parcels": ["-14,33", "-14,34"],
     "base": "-14,33"
